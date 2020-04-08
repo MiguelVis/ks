@@ -52,7 +52,7 @@
 		03 Oct 2016 : Reworked KsInit() and others. Added support for reverse and underline.
 		14 Jul 2017 : Added TTY names.
 		07 Apr 2020 : TTY names in uppercase.
-		08 Apr 2020 : Added KsGetNames().
+		08 Apr 2020 : Added KsGetNames(), KsGetHowMany().
 */
 
 /* Public defines
@@ -213,10 +213,10 @@ int code;
 }
 
 /**
- * @fn     char **KsGetNames()
+ * @fn     char **KsGetNames(void)
  * @brief  Get all supported TTY names.
  * This function can be called before KsHello().
- * @return Pointer to an array of pointers to char.
+ * @return Pointer to an array of pointers to char
  */
 KsGetNames()
 {
@@ -225,6 +225,17 @@ KsGetNames()
 	}
 
 	return xks_names;
+}
+
+/**
+ * @fn     int KsGetHowMany(void)
+ * @brief  Get the number of supported TTYs.
+ * This function can be called before KsHello().
+ * @return Number of supported TTYs
+ */
+KsGetHowMany()
+{
+	return XKS_TTYS;
 }
 
 /**
@@ -399,7 +410,6 @@ char *s;
 		KsPutCh(*s++);
 	}
 }
-
 
 /**
  * @fn     int KsGetKb(void)

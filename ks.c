@@ -64,6 +64,10 @@ main(argc, argv)
 int argc;
 unsigned int argv[]; // char *argv[] - unsupported by MESCC (yet?)
 {
+	int i;
+	int tty_n;
+	int *tty_s; /* char *tty_s[] */
+	
 	// Check command line arguments
 	if(argc != 2) {
 		printf("Usage: ks tty_name\n"); return;
@@ -102,6 +106,20 @@ unsigned int argv[]; // char *argv[] - unsupported by MESCC (yet?)
 		KsPutStr("NO");
 	}
 
+	KsPutCh('\n');
+	
+	// Print the names of all supported TTYs
+	tty_s = KsGetNames();
+	tty_n = KsGetHowMany();
+	
+	KsPutStr("\nSupported TTYs:\n");
+	
+	for(i = 0; i < tty_n; ++i) {
+		KsPutStr("    ");
+		KsPutStr(tty_s[i]);
+		KsPutCh('\n');
+	}
+	
 	KsPutCh('\n');
 
 	// Quit KS
