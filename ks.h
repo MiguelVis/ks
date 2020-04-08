@@ -51,6 +51,8 @@
 		29 Sep 2016 : Rename functions.
 		03 Oct 2016 : Reworked KsInit() and others. Added support for reverse and underline.
 		14 Jul 2017 : Added TTY names.
+		07 Apr 2020 : TTY names in uppercase.
+		08 Apr 2020 : Added KsGetNames().
 */
 
 /* Public defines
@@ -208,6 +210,21 @@ int code;
 
 	// Unknown tty code
 	return NULL;
+}
+
+/**
+ * @fn     char **KsGetNames()
+ * @brief  Get all supported TTY names.
+ * This function can be called before KsHello().
+ * @return Pointer to an array of pointers to char.
+ */
+KsGetNames()
+{
+	if(!xks_names[0]) {
+		xKsNames();
+	}
+
+	return xks_names;
 }
 
 /**
@@ -437,12 +454,12 @@ xKsConOut
 // void xKsNames(void) : Set TTY names.
 xKsNames()
 {
-	xks_names[KS_VT52]     = "vt52";
-	xks_names[KS_VT100]    = "vt100";
-	xks_names[KS_PCW]      = "pcw";
-	xks_names[KS_CPC]      = "cpc";
-	xks_names[KS_SPECTRUM] = "spectrum";
-	xks_names[KS_KAYPRO]   = "kaypro";
+	xks_names[KS_VT52]     = "VT52";
+	xks_names[KS_VT100]    = "VT100";
+	xks_names[KS_PCW]      = "PCW";
+	xks_names[KS_CPC]      = "CPC";
+	xks_names[KS_SPECTRUM] = "SPECTRUM";
+	xks_names[KS_KAYPRO]   = "KAYPRO";
 }
 
 // void xKsInit24x80(void) : Set TTY to 24 rows and 80 columns.
